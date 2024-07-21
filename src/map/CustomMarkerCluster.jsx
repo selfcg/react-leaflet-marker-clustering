@@ -15,7 +15,9 @@ function CustomMarkerCluster({ children }) {
     const markerClusterGroup = L.markerClusterGroup();
 
     //get the position and other props of children
-    React.Children.forEach((markerComponent) => {});
+    React.Children.forEach((markerComponent) => {
+      //validate that we are indeed working with marker components
+    });
 
     map.addLayer(markerClusterGroup);
   }, [map, children]);
