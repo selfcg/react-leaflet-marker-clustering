@@ -11,7 +11,7 @@ function TheMap() {
     startinZoom: 6,
   };
 
-  const NUM_MARKERS = 100;
+  const NUM_MARKERS = 25000;
 
   const floridaBounds = [
     { lat: 24.396308, lng: -87.634938 }, //southWest
