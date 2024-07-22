@@ -11,23 +11,33 @@ function TheMap() {
     startinZoom: 6,
   };
 
+  const NUM_MARKERS = 100;
+
   const floridaBounds = [
     { lat: 24.396308, lng: -87.634938 }, //southWest
     { lat: 31.000888, lng: -80.031362 }, //northEast
   ];
 
-  const floridaMarkers = MarkerGenerator.getRandomMarkers(100, floridaBounds);
+  const floridaMarkers = MarkerGenerator.getRandomMarkers(
+    NUM_MARKERS,
+    floridaBounds
+  );
+
+  const markers = floridaMarkers.map((coords, idx) => {
+    return (
+      <Marker key={`marker-${idx}`} position={coords}>
+        <Popup>{`What a  great popup for marker-${idx}`}</Popup>
+      </Marker>
+    );
+  });
+
   return (
     <Map center={MAP_DEFAULTS.startingPos} zoom={MAP_DEFAULTS.startinZoom}>
       <TileLayer
         attribution={ESRI_WORLDTOPOMAP.attribution}
         url={ESRI_WORLDTOPOMAP.url}
       />
-      <CustomMarkerCluster>
-        {floridaMarkers.map((coords, idx) => {
-          return <Marker key={`marker-${idx}`} position={coords} />;
-        })}
-      </CustomMarkerCluster>
+      <CustomMarkerCluster>{markers}</CustomMarkerCluster>
     </Map>
   );
 }

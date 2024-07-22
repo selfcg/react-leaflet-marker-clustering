@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * Validator class is intended to be used as a store for various helper
  * functions designed to ensure data integrity
@@ -11,7 +13,9 @@ class Validator {
    */
   static validateChildren(children, component, errorMessage) {
     const isValid = React.Children.toArray(children).every((child) => {
-      React.isValidElement(child) && child.type === component;
+      // console.log('isValidElement: ', React.isValidElement(child));
+      // console.log('Is type correct: ', child.type === component);
+      return React.isValidElement(child) && child.type === component;
     });
 
     if (!isValid) {
@@ -19,3 +23,5 @@ class Validator {
     }
   }
 }
+
+export default Validator;
